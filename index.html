@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Алгоритмические задачи на JavaScript</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    button {
+      margin: 10px 0;
+      padding: 10px;
+      cursor: pointer;
+    }
+    input {
+      margin: 10px 0;
+      padding: 5px;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>JavaScript Задачи</h2>
+
+  <!-- 1 -->
+  <button onclick="handleTypeCount()">1. Посчитать типы данных в массиве</button><br>
+
+  <!-- 2 -->
+  <button onclick="handleSum()">2. Найти сумму чисел в массиве</button><br>
+
+  <!-- 3 -->
+  <button onclick="handleCompare()">3. Сравнить два числа</button><br>
+
+  <!-- 4 -->
+  <input type="password" id="userPass" placeholder="Введите пароль">
+  <button onclick="checkPassword()">4. Проверка пароля</button><br>
+
+  <div id="result"></div>
+
+  <script>
+    // 1. Подсчет типов
+    function countDataTypes(arr) {
+      const counts = {};
+      for (let item of arr) {
+        const type = typeof item;
+        counts[type] = (counts[type] || 0) + 1;
+      }
+      return counts;
+    }
+
+    function handleTypeCount() {
+      const arr = [1, "hello", true, null, undefined, {}, [], 42];
+      const result = countDataTypes(arr);
+      document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+    }
+
+    // 2. Сумма чисел
+    function sumNumbers(arr) {
+      return arr.reduce((sum, item) => typeof item === "number" ? sum + item : sum, 0);
+    }
+
+    function handleSum() {
+      const arr = [1, 5, "3", null, 10, true];
+      const result = sumNumbers(arr);
+      document.getElementById('result').innerText = "Сумма чисел: " + result;
+    }
+
+    // 3. Сравнение чисел
+    function findBigger(a, b) {
+      if (a > b) return a;
+      else if (b > a) return b;
+      else return "Они равны";
+    }
+
+    function handleCompare() {
+      const a = parseFloat(prompt("Введите первое число:"));
+      const b = parseFloat(prompt("Введите второе число:"));
+      const result = findBigger(a, b);
+      document.getElementById('result').innerText = "Большее число: " + result;
+    }
+
+    // 4. Проверка пароля
+    function checkPassword() {
+      const savedPassword = "1234";
+      const userInput = document.getElementById("userPass").value;
+      if (userInput === savedPassword) {
+        alert("Удача");
+      } else {
+        alert("Введите заново");
+      }
+    }
+  </script>
+
+</body>
+</html>
